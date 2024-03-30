@@ -1,11 +1,13 @@
 import 'package:e_commerce/consts/colors.dart';
 import 'package:e_commerce/consts/my_icons.dart';
 import 'package:e_commerce/provider/dark_theme_provider.dart';
+import 'package:e_commerce/screens/cart.dart';
+import 'package:e_commerce/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class UserInfoScreen extends StatefulWidget {
-  static const routeName = '/user';
+  static const routeName = '/user_info_screen';
 
   @override
   State<UserInfoScreen> createState() => _UserInfoScreenState();
@@ -117,29 +119,42 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 9.0),
-                        child: userTitle('User Information'),
+                      userTitle('User bag'),
+                      userListTile(
+                        title: 'Wishlist',
+                        subtitle: '',
+                        iconData: MyAppIcons.chevronRight,
+                        index: 5,
+                        routeName: WishlistScreen.routeName,
+                        context: context,
                       ),
-                      Divider(
-                        thickness: 1,
-                        color: Colors.grey,
+                      userListTile(
+                        title: 'Cart',
+                        subtitle: '',
+                        iconData: MyAppIcons.chevronRight,
+                        index: 6,
+                        routeName: CartScreen.routeName,
+                        context: context,
                       ),
+                      userTitle('User Information'),
                       userListTile(
                         title: 'Email',
                         subtitle: 'hello@mehran.im',
+                        iconData: MyAppIcons.edit,
                         index: 0,
                         context: context,
                       ),
                       userListTile(
                         title: 'Phone number',
                         subtitle: '4455',
+                        iconData: MyAppIcons.edit,
                         index: 1,
                         context: context,
                       ),
                       userListTile(
                         title: 'Shipping address',
                         subtitle: '',
+                        iconData: MyAppIcons.edit,
                         index: 2,
                         context: context,
                       ),
@@ -149,14 +164,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                         index: 3,
                         context: context,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 9.0),
-                        child: userTitle('User Settings'),
-                      ),
-                      Divider(
-                        thickness: 1,
-                        color: Colors.grey,
-                      ),
+                      userTitle('User Settings'),
                       ColoredBox(
                         color: Colors.green,
                         child: Material(
@@ -231,17 +239,21 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   }
 
   List<IconData> userTileIcons = [
-    Icons.email,
-    Icons.phone,
-    Icons.local_shipping,
-    Icons.watch_later,
-    Icons.exit_to_app_rounded,
+    MyAppIcons.email,
+    MyAppIcons.phone,
+    MyAppIcons.shipping,
+    MyAppIcons.clock,
+    MyAppIcons.logout,
+    MyAppIcons.wishlist,
+    MyAppIcons.cart,
   ];
 
   Widget userListTile({
     required String title,
     String? subtitle,
     required int index,
+    IconData? iconData,
+    String? routeName,
     required BuildContext context,
   }) {
     return Material(
@@ -249,11 +261,16 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       child: InkWell(
         splashColor: Theme.of(context).splashColor,
         child: ListTile(
+          leading: Icon(userTileIcons[index]),
           title: Text(title),
           subtitle:
               (subtitle == null || subtitle == '') ? null : Text(subtitle!),
-          leading: Icon(userTileIcons[index]),
-          onTap: () {},
+          trailing: Icon(iconData),
+          onTap: () {
+            routeName == null
+                ? null
+                : Navigator.of(context).pushNamed(routeName);
+          },
         ),
       ),
     );
@@ -262,13 +279,24 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
 Widget userTitle(String title) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
-    child: Text(
-      title,
-      style: TextStyle(
-        fontSize: 22,
-        fontWeight: FontWeight.bold,
-      ),
+    padding: const EdgeInsets.all(9.0),
+    child: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(3.0),
+          child: Text(
+            title,
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Divider(
+          thickness: 1,
+          color: Colors.grey.withOpacity(.66),
+        ),
+      ],
     ),
   );
 }

@@ -6,6 +6,7 @@ import 'package:e_commerce/screens/cart.dart';
 import 'package:e_commerce/screens/feeds.dart';
 import 'package:e_commerce/screens/home.dart';
 import 'package:e_commerce/screens/user_info.dart';
+import 'package:e_commerce/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
             CartScreen.routeName: (context) => CartScreen(),
             FeedsScreen.routeName: (context) => FeedsScreen(),
             UserInfoScreen.routeName: (context) => UserInfoScreen(),
+            WishlistScreen.routeName: (context) => WishlistScreen(),
           },
         ),
       ),

@@ -5,7 +5,7 @@ import 'package:e_commerce/widget/home_front_layer_menu.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const routeName = '/home';
+  static const routeName = '/home_screen';
 
   @override
   Widget build(BuildContext context) {

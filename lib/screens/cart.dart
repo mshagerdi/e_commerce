@@ -5,7 +5,7 @@ import 'package:e_commerce/widget/cart_full.dart';
 import 'package:flutter/material.dart';
 
 class CartScreen extends StatelessWidget {
-  static const routeName = '/cart';
+  static const routeName = '/cart_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CartScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              title: Text('Cart Items Countt'),
+              title: Text('Cart Items Count'),
               actions: [
                 IconButton(
                   onPressed: () {},

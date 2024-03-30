@@ -12,4 +12,11 @@ class MyAppIcons {
   static IconData dark = FeatherIcons.moon;
   static IconData wishlist = FeatherIcons.heart;
   static IconData upload = FeatherIcons.upload;
+  static IconData email = FeatherIcons.mail;
+  static IconData phone = FeatherIcons.phone;
+  static IconData shipping = FeatherIcons.truck;
+  static IconData clock = FeatherIcons.clock;
+  static IconData logout = FeatherIcons.logOut;
+  static IconData chevronRight = FeatherIcons.chevronRight;
+  static IconData edit = FeatherIcons.edit2;
 }

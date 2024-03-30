@@ -2,8 +2,8 @@ import 'package:e_commerce/provider/dark_theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CartEmpty extends StatelessWidget {
-  const CartEmpty({super.key});
+class WishlistEmpty extends StatelessWidget {
+  const WishlistEmpty({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +17,12 @@ class CartEmpty extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('assets/images/emptycart.png'),
+              image: AssetImage('assets/images/empty-wishlist.png'),
             ),
           ),
         ),
         Text(
-          'Your Cart Is Empty',
+          'Your Wishlist Is Empty',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 39,
@@ -33,7 +33,7 @@ class CartEmpty extends StatelessWidget {
           height: 33,
         ),
         Text(
-          'Looks Like You didn\'t \nadd anything to your cart yet',
+          'Explore more and shortlist some items',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 26,
@@ -52,7 +52,7 @@ class CartEmpty extends StatelessWidget {
             ),
             onPressed: () {},
             child: Text(
-              'shop now'.toUpperCase(),
+              'Add a wish'.toUpperCase(),
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 26,

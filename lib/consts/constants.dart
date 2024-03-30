@@ -4,6 +4,7 @@ import 'package:e_commerce/screens/feeds.dart';
 import 'package:e_commerce/screens/home.dart';
 import 'package:e_commerce/screens/search.dart';
 import 'package:e_commerce/screens/user_info.dart';
+import 'package:e_commerce/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 
 List<Map<String, Widget>> pages = [
@@ -12,6 +13,7 @@ List<Map<String, Widget>> pages = [
   {'page': Search(), 'pageIcon': Icon(MyAppIcons.search)},
   {'page': CartScreen(), 'pageIcon': Icon(MyAppIcons.bag)},
   {'page': UserInfoScreen(), 'pageIcon': Icon(MyAppIcons.user)},
+  {'page': WishlistScreen(), 'pageIcon': Icon(MyAppIcons.wishlist)},
 ];
 
 List<Map<String, Object>> categories = [
