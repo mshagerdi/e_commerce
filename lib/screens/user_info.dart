@@ -264,7 +264,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
           leading: Icon(userTileIcons[index]),
           title: Text(title),
           subtitle:
-              (subtitle == null || subtitle == '') ? null : Text(subtitle!),
+              (subtitle == null || subtitle == '') ? null : Text(subtitle),
           trailing: Icon(iconData),
           onTap: () {
             routeName == null

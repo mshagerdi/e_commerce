@@ -1,4 +1,6 @@
-import 'package:e_commerce/provider/category_data_provider.dart';
+import 'package:e_commerce/inner_screens/categories_navigation_rail.dart';
+import 'package:e_commerce/inner_screens/product_details.dart';
+import 'package:e_commerce/provider/product_data_provider.dart';
 import 'package:e_commerce/provider/dark_theme_provider.dart';
 import 'package:e_commerce/provider/page_navigator_provider.dart';
 import 'package:e_commerce/screens/bottom_bar.dart';
@@ -14,7 +16,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
-  CategoryDataProvider categoryDataProvider = CategoryDataProvider();
+  ProductDataProvider categoryDataProvider = ProductDataProvider();
   PageNavigatorProvider pageNavigatorProvider = PageNavigatorProvider();
 
   void getCurrentAppTheme() async {
@@ -51,6 +53,9 @@ class MyApp extends StatelessWidget {
             FeedsScreen.routeName: (context) => FeedsScreen(),
             UserInfoScreen.routeName: (context) => UserInfoScreen(),
             WishlistScreen.routeName: (context) => WishlistScreen(),
+            ProductDetails.routeName: (context) => ProductDetails(),
+            CategoriesNavigationRailScreen.routeName: (context) =>
+                CategoriesNavigationRailScreen(),
           },
         ),
       ),

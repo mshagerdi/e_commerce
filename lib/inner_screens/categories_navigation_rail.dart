@@ -1,5 +1,5 @@
 import 'package:e_commerce/consts/constants.dart';
-import 'package:e_commerce/provider/category_data_provider.dart';
+import 'package:e_commerce/provider/product_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +15,10 @@ class CategoriesNavigationRailScreen extends StatefulWidget {
 
 class _CategoriesNavigationRailScreenState
     extends State<CategoriesNavigationRailScreen> {
+  var _isInit = true;
+  var _isLoading = false;
+  late int _selectedIndex;
+
   List<NavigationRailDestination> navigationRailCategories = [];
 
   void getNavigationRailCategories() {
@@ -32,14 +36,27 @@ class _CategoriesNavigationRailScreenState
   @override
   void initState() {
     getNavigationRailCategories();
+
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
-    final categoryData = Provider.of<CategoryDataProvider>(context);
-    int _selectedIndex = categoryData.getSelectedCategory;
+  void didChangeDependencies() {
+    _selectedIndex =
+        Provider.of<ProductDataProvider>(context).getSelectedCategory;
+    if (_isInit) {
+      Provider.of<ProductDataProvider>(context)
+          .setSelectedCategory(_selectedIndex)
+          .then((_) {
+        _isLoading = true;
+      });
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Row(
@@ -66,7 +83,7 @@ class _CategoriesNavigationRailScreenState
                           ],
                         ),
                         onDestinationSelected: (int index) =>
-                            Provider.of<CategoryDataProvider>(context,
+                            Provider.of<ProductDataProvider>(context,
                                     listen: false)
                                 .setSelectedCategory(index),
                         groupAlignment: 1,
@@ -90,6 +107,11 @@ class _CategoriesNavigationRailScreenState
                 );
               },
             ),
+            // _isLoading
+            //     ? Center(
+            //         child: CircularProgressIndicator(),
+            //       )
+            //     :
             ContentSpace(_selectedIndex < categories.length
                 ? categories[_selectedIndex]['categoryName'].toString()
                 : 'All'),
@@ -104,8 +126,11 @@ NavigationRailDestination navigationRailDestination(
     {required String text, required String imageAsset}) {
   return NavigationRailDestination(
     icon: Container(
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20))),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
       child: Tab(
         icon: Container(
           width: 26,

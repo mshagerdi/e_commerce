@@ -18,42 +18,52 @@ List<Map<String, Widget>> pages = [
 
 List<Map<String, Object>> categories = [
   {
+    'categoryId': '001',
     'categoryName': 'Sets',
     'categoryImagePath': 'assets/images/categories_images/CatSets.jpg',
   },
   {
+    'categoryId': '071',
     'categoryName': 'Half Sets',
     'categoryImagePath': 'assets/images/categories_images/CatHalfSets.jpeg',
   },
   {
+    'categoryId': '023',
     'categoryName': 'Necklaces',
     'categoryImagePath': 'assets/images/categories_images/CatNecklaces.jpg',
   },
   {
+    'categoryId': '042',
     'categoryName': 'Bracelets',
     'categoryImagePath': 'assets/images/categories_images/CatBracelets.jpeg',
   },
   {
+    'categoryId': '052',
     'categoryName': 'Anklets',
     'categoryImagePath': 'assets/images/categories_images/CatAnklets.jpg',
   },
   {
+    'categoryId': '014',
     'categoryName': 'Earrings',
     'categoryImagePath': 'assets/images/categories_images/CatEarrings.jpeg',
   },
   {
+    'categoryId': '021',
     'categoryName': 'Chains',
     'categoryImagePath': 'assets/images/categories_images/CatChains.jpeg',
   },
   {
+    'categoryId': '022',
     'categoryName': 'Pendants',
     'categoryImagePath': 'assets/images/categories_images/CatPendants.jpeg',
   },
   {
+    'categoryId': '045',
     'categoryName': 'Rings',
     'categoryImagePath': 'assets/images/categories_images/CatRings.jpeg',
   },
   {
+    'categoryId': '081',
     'categoryName': 'Gifts and kids',
     'categoryImagePath': 'assets/images/categories_images/CatGifts.jpg',
   },

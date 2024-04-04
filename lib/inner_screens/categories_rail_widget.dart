@@ -1,6 +1,10 @@
+import 'package:e_commerce/consts/styles.dart';
+import 'package:intl/intl.dart';
+import 'package:e_commerce/models/product.dart';
+import 'package:e_commerce/provider/product_data_provider.dart';
 import 'package:flutter/material.dart';
-
-import '../consts/constants.dart';
+import 'package:provider/provider.dart';
+import 'package:persian_fonts/persian_fonts.dart';
 
 class ContentSpace extends StatelessWidget {
   ContentSpace(this.categoryLabel);
@@ -9,6 +13,10 @@ class ContentSpace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ProductDataProvider>(context);
+    List<Product> _products = provider.products;
+    print('products length: ${_products.length}');
+    var formatter = NumberFormat('#,##,000');
     return Expanded(
       child: Container(
         child: ListView.builder(
@@ -27,18 +35,27 @@ class ContentSpace extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'title',
-                            style: TextStyle(
+                            _products[index].title,
+                            style: PersianFonts.Yekan.copyWith(
                               fontWeight: FontWeight.bold,
-                              fontSize: 13,
+                              fontSize: 11,
                             ),
                           ),
-                          Text(
-                            'US 16\$',
-                            style: TextStyle(
-                              color: Colors.pink,
-                              fontSize: 22,
-                            ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${formatter.format(_products[index].price)}',
+                                style: TextStyle(
+                                  color: Colors.pink,
+                                  fontSize: 22,
+                                ),
+                              ),
+                              Text(
+                                'IRR',
+                                style: kCurrencyStyle,
+                              )
+                            ],
                           ),
                           Text(
                             categoryLabel,
@@ -62,7 +79,7 @@ class ContentSpace extends StatelessWidget {
                       ),
                       image: DecorationImage(
                         image: NetworkImage(
-                          testProductUrl,
+                          _products[index].imageUrl,
                         ),
                         fit: BoxFit.fill,
                       ),
@@ -72,7 +89,7 @@ class ContentSpace extends StatelessWidget {
               ],
             );
           },
-          itemCount: 5,
+          itemCount: _products.length,
         ),
       ),
     );

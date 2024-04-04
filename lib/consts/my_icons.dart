@@ -19,4 +19,6 @@ class MyAppIcons {
   static IconData logout = FeatherIcons.logOut;
   static IconData chevronRight = FeatherIcons.chevronRight;
   static IconData edit = FeatherIcons.edit2;
+  static IconData share = FeatherIcons.share;
+  static IconData save = FeatherIcons.save;
 }

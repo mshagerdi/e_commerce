@@ -1,12 +1,16 @@
+import 'package:e_commerce/models/product.dart';
+import 'package:e_commerce/provider/product_data_provider.dart';
 import 'package:e_commerce/widget/feeds_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 
 class FeedsScreen extends StatelessWidget {
   static const routeName = '/feeds_screen';
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ProductDataProvider>(context);
     return Scaffold(
       body: SafeArea(
         child:

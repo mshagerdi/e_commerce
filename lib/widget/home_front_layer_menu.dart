@@ -1,10 +1,9 @@
+import 'package:e_commerce/consts/constants.dart';
 import 'package:e_commerce/widget/category.dart';
 import 'package:e_commerce/widget/home_recently_visited_products.dart';
 import 'package:flutter/material.dart';
 import 'package:another_carousel_pro/another_carousel_pro.dart';
 import 'package:card_swiper/card_swiper.dart';
-
-import '../consts/constants.dart';
 
 class FrontLayerMenu extends StatelessWidget {
   const FrontLayerMenu({super.key});
