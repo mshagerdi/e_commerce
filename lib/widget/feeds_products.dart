@@ -1,16 +1,22 @@
 import 'package:e_commerce/inner_screens/product_details.dart';
+import 'package:e_commerce/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 
 class FeedProducts extends StatelessWidget {
-  const FeedProducts({super.key});
+  FeedProducts({
+    required this.product,
+  });
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(3.0),
       child: InkWell(
-        onTap: () => Navigator.of(context).pushNamed(ProductDetails.routeName),
+        onTap: () => Navigator.of(context).pushNamed(ProductDetails.routeName,
+            arguments: {'productAttributes': product}),
         child: Container(
           height: 392,
           width: 250,
@@ -21,7 +27,7 @@ class FeedProducts extends StatelessWidget {
                   children: [
                     ClipRRect(
                       child: Image.network(
-                        'https://zariran.com/images/products/thumb_1070.jpg',
+                        product.imageUrl,
                         fit: BoxFit.fitWidth,
                       ),
                     ),
@@ -60,7 +66,7 @@ class FeedProducts extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Description',
+                        product.title,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -71,7 +77,7 @@ class FeedProducts extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Text(
-                          '\$ 158.99',
+                          '\$ ${product.price}',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w900,
@@ -82,7 +88,7 @@ class FeedProducts extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Quantity 12',
+                            'Quantity 1',
                             style: TextStyle(
                               fontSize: 13,
                               color: Colors.grey,

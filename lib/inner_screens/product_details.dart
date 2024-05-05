@@ -3,16 +3,23 @@ import 'dart:ui';
 import 'package:e_commerce/consts/constants.dart';
 import 'package:e_commerce/consts/my_icons.dart';
 import 'package:e_commerce/consts/styles.dart';
+import 'package:e_commerce/models/product.dart';
+import 'package:e_commerce/provider/product_data_provider.dart';
 import 'package:e_commerce/screens/cart.dart';
 import 'package:e_commerce/screens/wishlist.dart';
 import 'package:e_commerce/widget/feeds_products.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetails extends StatelessWidget {
   static const routeName = '/product_details';
 
   @override
   Widget build(BuildContext context) {
+    final arguments = ModalRoute.of(context)?.settings.arguments as Map;
+    Product product = arguments['productAttributes'];
+    final provider = Provider.of<ProductDataProvider>(context);
+    List<Product> _products = provider.products;
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -38,7 +45,7 @@ class ProductDetails extends StatelessWidget {
           Container(
             height: MediaQuery.of(context).size.height * .44,
             width: double.infinity,
-            child: Image.network(testProductUrl),
+            child: Image.network(product.imageUrl),
           ),
           SingleChildScrollView(
             child: Column(
@@ -69,11 +76,11 @@ class ProductDetails extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'title',
+                          product.title,
                           style: kTitleStyle,
                         ),
                         Text(
-                          'US \$ 15',
+                          'US \$ ${product.price}',
                           style: kDescriptionStyle,
                         ),
                         divider(),
@@ -82,9 +89,9 @@ class ProductDetails extends StatelessWidget {
                           style: kDescriptionStyle,
                         ),
                         divider(),
-                        _details('Brand', 'BrandName'),
-                        _details('quantity', '12 left'),
-                        _details('Category', 'CatName'),
+                        _details('Brand', product.brand),
+                        _details('quantity', '1 left'),
+                        _details('Category', product.productCategoryName),
                         _details('Popularity', 'Popular'),
                         Container(
                           width: double.infinity,
@@ -115,8 +122,10 @@ class ProductDetails extends StatelessWidget {
                           height: 400,
                           child: ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: 7,
-                            itemBuilder: (context, index) => FeedProducts(),
+                            itemCount: _products.length,
+                            itemBuilder: (context, index) => FeedProducts(
+                              product: _products[index],
+                            ),
                           ),
                         ),
                       ],

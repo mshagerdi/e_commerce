@@ -26,11 +26,12 @@ class ProductDataProvider extends ChangeNotifier {
         'Selected Category Id: ${categories[_selectedCategory]['categoryId']} \nSelected Category Name: ${categories[_selectedCategory]['categoryName']}');
     String apiUrl =
         'https://api.zariran.com/?category=${categories[_selectedCategory]['categoryId']}';
-    Uri url = Uri.parse(apiUrl);
-    final response = await http.get(url);
-    print('Response: ${response}');
-    final extractedData =
-        json.decode(response.body)['info'] as Map<String, dynamic>;
+
+    final extractedData = await http.get(Uri.parse(apiUrl), headers: {
+      "Content-Type": "application/json",
+    }).then((response) {
+      return json.decode(utf8.decode(response.bodyBytes))['info'];
+    }) as Map<String, dynamic>;
     if (extractedData == null) {
       print('Extracted data is null.');
       return;
@@ -43,12 +44,12 @@ class ProductDataProvider extends ChangeNotifier {
           title: productData['fa_name'],
           description: productData['fa_name'],
           price: double.parse(productData['price']),
-          imageUrl: 'https://zariran.com/images/products/$productId.jpg',
+          imageUrl: 'https://zariran.com/images/products/thumb_$productId.jpg',
           productCategoryName: productData['dir'],
           brand: productData['dir'],
           quantity: 1,
           isFavorite: true,
-          isPopular: true,
+          isOffer: productData['status'] == '2',
         ),
       );
     });

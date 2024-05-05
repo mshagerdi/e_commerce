@@ -3,7 +3,6 @@ import 'package:e_commerce/consts/constants.dart';
 import 'package:e_commerce/consts/my_icons.dart';
 import 'package:e_commerce/provider/page_navigator_provider.dart';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -81,7 +80,7 @@ class BackLayerMenu extends StatelessWidget {
                 text: 'Wishlist',
                 iconData: MyAppIcons.wishlist,
                 context: context,
-                pageIndex: 1,
+                pageIndex: 4,
               ),
               contentMenu(
                 text: 'Upload a new product',

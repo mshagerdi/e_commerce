@@ -15,8 +15,6 @@ class CategoriesNavigationRailScreen extends StatefulWidget {
 
 class _CategoriesNavigationRailScreenState
     extends State<CategoriesNavigationRailScreen> {
-  var _isInit = true;
-  var _isLoading = false;
   late int _selectedIndex;
 
   List<NavigationRailDestination> navigationRailCategories = [];
@@ -27,9 +25,9 @@ class _CategoriesNavigationRailScreenState
           text: category['categoryName'].toString(),
           imageAsset: category['categoryImagePath'].toString()));
     }
-    navigationRailCategories.add(
-      navigationRailDestination(text: 'All', imageAsset: catAllUrl),
-    );
+    // navigationRailCategories.add(
+    //   navigationRailDestination(text: 'All', imageAsset: catAllUrl),
+    // );
     print(navigationRailCategories.length);
   }
 
@@ -44,14 +42,7 @@ class _CategoriesNavigationRailScreenState
   void didChangeDependencies() {
     _selectedIndex =
         Provider.of<ProductDataProvider>(context).getSelectedCategory;
-    if (_isInit) {
-      Provider.of<ProductDataProvider>(context)
-          .setSelectedCategory(_selectedIndex)
-          .then((_) {
-        _isLoading = true;
-      });
-    }
-    _isInit = false;
+
     super.didChangeDependencies();
   }
 
@@ -69,7 +60,7 @@ class _CategoriesNavigationRailScreenState
                         BoxConstraints(minHeight: constraints.maxHeight),
                     child: IntrinsicHeight(
                       child: NavigationRail(
-                        minWidth: 55,
+                        minWidth: 66,
                         leading: Column(
                           children: [
                             Center(
@@ -107,14 +98,11 @@ class _CategoriesNavigationRailScreenState
                 );
               },
             ),
-            // _isLoading
-            //     ? Center(
-            //         child: CircularProgressIndicator(),
-            //       )
-            //     :
-            ContentSpace(_selectedIndex < categories.length
-                ? categories[_selectedIndex]['categoryName'].toString()
-                : 'All'),
+            ContentSpace(
+                // _selectedIndex < categories.length ?
+                categories[_selectedIndex]['categoryName'].toString()
+                // : 'All'
+                ),
           ],
         ),
       ),

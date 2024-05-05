@@ -36,9 +36,11 @@ class ContentSpace extends StatelessWidget {
                         children: [
                           Text(
                             _products[index].title,
-                            style: PersianFonts.Yekan.copyWith(
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: PersianFonts.Shabnam.copyWith(
                               fontWeight: FontWeight.bold,
-                              fontSize: 11,
+                              fontSize: 13,
                             ),
                           ),
                           Row(

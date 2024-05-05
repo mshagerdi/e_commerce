@@ -8,7 +8,7 @@ class Product {
   final String brand;
   final int quantity;
   final bool isFavorite;
-  final bool isPopular;
+  final bool isOffer;
 
   Product({
     required this.id,
@@ -20,6 +20,6 @@ class Product {
     required this.brand,
     required this.quantity,
     required this.isFavorite,
-    required this.isPopular,
+    required this.isOffer,
   });
 }

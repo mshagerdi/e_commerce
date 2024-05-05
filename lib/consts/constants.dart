@@ -67,6 +67,11 @@ List<Map<String, Object>> categories = [
     'categoryName': 'Gifts and kids',
     'categoryImagePath': 'assets/images/categories_images/CatGifts.jpg',
   },
+  {
+    'categoryId': 'all',
+    'categoryName': 'All',
+    'categoryImagePath': 'assets/images/categories_images/CatAll.jpeg',
+  },
 ];
 
 String catAllUrl = 'assets/images/categories_images/CatAll.jpeg';

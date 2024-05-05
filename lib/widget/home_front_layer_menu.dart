@@ -65,7 +65,7 @@ class FrontLayerMenu extends StatelessWidget {
             child: Row(
               children: [
                 Text(
-                  'Popular Items',
+                  'Special Offers',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 19,

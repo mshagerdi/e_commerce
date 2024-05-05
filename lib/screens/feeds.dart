@@ -1,3 +1,4 @@
+import 'package:e_commerce/consts/constants.dart';
 import 'package:e_commerce/models/product.dart';
 import 'package:e_commerce/provider/product_data_provider.dart';
 import 'package:e_commerce/widget/feeds_products.dart';
@@ -11,6 +12,9 @@ class FeedsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ProductDataProvider>(context);
+    // provider.setSelectedCategory(categories.length - 1);
+    List<Product> _products = provider.products;
+    print('products length: ${_products.length}');
     return Scaffold(
       body: SafeArea(
         child:
@@ -28,8 +32,10 @@ class FeedsScreen extends StatelessWidget {
           childAspectRatio: 230 / 392,
           crossAxisCount: 2,
           children: List.generate(
-            100,
-            (index) => FeedProducts(),
+            _products.length,
+            (index) => FeedProducts(
+              product: _products[index],
+            ),
           ),
         ),
       ),
